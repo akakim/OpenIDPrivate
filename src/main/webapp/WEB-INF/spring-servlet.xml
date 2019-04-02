@@ -16,8 +16,8 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 		
-
-<!-- 패키지 재료들을 탐색한다.  -->
+	
+		<!-- 패키지 재료들을 탐색한다.  -->
 		<context:component-scan annotation-config="true" base-package="com.openid.kim"/>
 		
 		
@@ -39,5 +39,11 @@
 	    	p:viewClass="org.springframework.web.servlet.view.JstlView" 
 	    	p:prefix="/WEB-INF/jsp/" p:suffix=".jsp">
 	   	</bean>
+	   	
+	   	<bean 
+	   		id="defaultSampleBoardService" class="com.openid.kim.serviceImpl.DefaultSampleBoardService"></bean>
+	   	
+		<import resource="data-context.xml"></import>
+		
 </beans>
 
