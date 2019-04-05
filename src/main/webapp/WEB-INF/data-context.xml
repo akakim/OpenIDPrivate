@@ -45,15 +45,15 @@
 
 	<!--  The following is for connecting to a MySQL database that has been initialized with 
 			src/main/resources/db/mysql/mysql_database_tables.sql -->
-	<!-- Mybatis 테이블 연동  -->			
-<!-- 	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
+				
+ 	<!-- <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="jdbcUrl" value="jdbc:mysql://authdata.c5t6qm0opzvw.ap-northeast-2.rds.amazonaws.com:3306/oauth?serverTimezone=UTC" />
-		<property name="username" value="magicsso" />
-		<property name="password" value="1q2w3e4r" />
- 	</bean>
+		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/oauth?serverTimezone=UTC" />
+		<property name="username" value="root" />
+		<property name="password" value="1q2w3e4r5" />
+ 	</bean> -->
 
-	<bean id="jpaAdapter" class="org.springframework.orm.jpa.vendor.EclipseLinkJpaVendorAdapter">
+	<!-- <bean id="jpaAdapter" class="org.springframework.orm.jpa.vendor.EclipseLinkJpaVendorAdapter">
 		<property name="databasePlatform" value="org.eclipse.persistence.platform.database.MySQLPlatform" />
 		<property name="showSql" value="true" />
 	</bean> -->

@@ -1,14 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Map"%>
-<jsp:forward page="/sample.do"/>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>MVC 시작.</title>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 </head>
 
 <body>
@@ -30,11 +28,11 @@
 			</tr>
 		</thead>
 		<tbody>
-			<%-- <% List<Map<String,Object>> list = (List<Map<String,Object>>)request.getAttribute("sampleBoard"); %>		
-			<c:forEach var="item" itmes="${list}" begin=0 end="${list.size}" varStatus="status">
+			<% List<Map<String,Object>> list = (List<Map<String,Object>>)request.getAttribute("sampleBoard"); %>		
+			<%-- <c:forEach var="item" itmes="${list}" begin=0 end="${list.size}" varStatus="status">
 					<tr>
-						<th scope="col">글 번호  </th>
-						<th scope="col">제목 </th>
+						<th scope="col">${item.begin }  </th>
+						<th scope="col">${begin}</th>
 						<th scope="col">조회수 </th>
 						<th scope="col">작성일 </th>
 					</tr>

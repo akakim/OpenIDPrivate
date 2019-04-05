@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:p="http://www.springframework.org/schema/p"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:security="http://www.springframework.org/schema/security"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:security="http://www.springframework.org/schema/security"
 	xmlns:oauth="http://www.springframework.org/schema/security/oauth2"
 	xmlns:util="http://www.springframework.org/schema/util"
 	xsi:schemaLocation="http://www.springframework.org/schema/security/oauth2 http://www.springframework.org/schema/security/spring-security-oauth2-2.0.xsd
@@ -19,8 +18,14 @@
 	
 		<!-- 패키지 재료들을 탐색한다.  -->
 		<context:component-scan annotation-config="true" base-package="com.openid.kim"/>
+		<context:component-scan annotation-config="true" base-package="net.spring4.chap02"/>
+		<context:property-placeholder location="classpath:/db.properties"/>
 		
+		<context:annotation-config/>
 		
+		<mvc:annotation-driven/>
+		<mvc:default-servlet-handler />
+						
 		<!-- 테스트 인터셉터 선언  -->
 		<mvc:interceptors>
 			<mvc:interceptor>
@@ -29,21 +34,52 @@
 			</mvc:interceptor>
 		</mvc:interceptors>
 		
-		 <!--  -->
-		<bean class="org.springframework.web.servlet.view.BeanNameViewResolver" p:order="0"/>
+
 		
- 		<bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" />     
+		
+		
+		 <!--  -->
+		<!-- <bean class="org.springframework.web.servlet.view.BeanNameViewResolver" p:order="0"/> -->
+		
+<!--  		<bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" />     
 
 		<bean
 	    	class="org.springframework.web.servlet.view.UrlBasedViewResolver" p:order="1" 
 	    	p:viewClass="org.springframework.web.servlet.view.JstlView" 
 	    	p:prefix="/WEB-INF/jsp/" p:suffix=".jsp">
-	   	</bean>
+	   	</bean> -->
 	   	
 	   	<bean 
 	   		id="defaultSampleBoardService" class="com.openid.kim.serviceImpl.DefaultSampleBoardService"></bean>
 	   	
-		<import resource="data-context.xml"></import>
+		<import resource="data-context.xml" />
 		
+		<import resource="spring-edu-data.xml" />
+		<!-- <mvc:annotation ignore-default-model-on-redirect="true">
+		
+			<mvc:message-converters>
+				<bean class="org.springframework.http.converter.StringHttpMessageConverter"/>
+				<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+				
+			</mvc:message-converters>
+			
+		</mvc:annotation> -->
+		
+		
+		<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
+		in the /WEB-INF/views directory -->
+		<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+			<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+			<property name="prefix" value="/WEB-INF/views/" />
+			<property name="suffix" value=".jsp" />
+			<property name="order" value="2" />
+		</bean>
+	
+		<!-- Resolve views based on string names -->
+		<bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+			<property name="order" value="1" />
+		</bean>
+	
+	
 </beans>
 
