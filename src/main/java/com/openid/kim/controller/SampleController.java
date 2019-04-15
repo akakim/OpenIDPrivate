@@ -41,6 +41,7 @@ public class SampleController {
 		model.addAttribute("greeting", "Hello Spring MVC. I'm Chris <br> My hobby is health training");
 		return "hello";
 	}
+	
 	@RequestMapping(value="/sample")
 	public String openSampleList(Map<String,Object> commandMap) throws Exception{
 		ModelAndView mv = new ModelAndView("sample");

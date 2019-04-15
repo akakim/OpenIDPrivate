@@ -91,12 +91,16 @@
 		</constructor-arg>
 	</bean>	
 	  
+	  
+
 	
 	<bean id="orderService" class="net.spring4.chap02.OrderService"/>
 
 	<bean id="sessionviewProvider" class="com.openid.kim.SessionViewProvider"/>
 	
+	<bean id="eventRepository" class="net.spring4.chap07.EventRepository" />
 	
+
 		
 	<!-- <bean id="pwChangeSvc" class="net.spring4.chap02.PasswordChangeservice">
 		<constructor-arg><ref bean="userRepository"/></constructor-arg>
