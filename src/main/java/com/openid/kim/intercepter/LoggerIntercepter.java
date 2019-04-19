@@ -18,8 +18,10 @@ public class LoggerIntercepter extends HandlerInterceptorAdapter{
 			throws Exception {
 		// TODO Auto-generated method stub
 		
-		System.out.println("--- 인터셉터 PreHandler --- ");
-		logger.info("start ....");
+//		System.out.println("--- 인터셉터 PreHandler --- ");
+		logger.info("--- 인터셉터 PreHandler ---");
+		logger.info(" getHandler type : " + 			handler.getClass().getSimpleName());
+		logger.info(" Request URI :: " + request.getRequestURI());
 		
 		if( logger.isDebugEnabled() ) {
 			logger.debug(" Request URI :: " + request.getRequestURI());
@@ -33,10 +35,15 @@ public class LoggerIntercepter extends HandlerInterceptorAdapter{
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
 		
-		System.out.println("--- 인터셉터 postHandler --- ");
-		logger.info("start ....");
+//		System.out.println("--- 인터셉터 postHandler --- ");
+		logger.info("--- 인터셉터 postHandler --- ");
+		logger.info(" getHandler type : " + 			handler.getClass().getSimpleName());
+		logger.info(" Request URI :: " + request.getRequestURI());
+//		logger.info("modelAndView" + modelAndView.getViewName());
 		if( logger.isDebugEnabled() ) {
 			logger.debug(" Request URI :: " + request.getRequestURI());
+			
+			handler.getClass().getSimpleName();
 		}
 		
 		super.postHandle(request, response, handler, modelAndView);

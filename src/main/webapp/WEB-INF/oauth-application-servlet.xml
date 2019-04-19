@@ -19,7 +19,7 @@
 		<!-- 패키지 재료들을 탐색한다.  -->
 		<context:component-scan annotation-config="true" base-package="com.openid.kim"/>
 		<context:component-scan annotation-config="true" base-package="net.spring4.chap02"/>
-		<context:property-placeholder location="classpath:/db.properties"/>
+		<context:property-placeholder location="classpath:/properties/db.properties"/>
 		
 		<context:annotation-config/>
 		
@@ -62,6 +62,9 @@
 			
 		</mvc:annotation> -->
 		
+		<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
+		up static resources in the ${webappRoot}/resources directory -->
+		<mvc:resources mapping="/resources/**" location="/resources/" />
 		
 		<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
 		in the /WEB-INF/views directory -->
@@ -76,6 +79,8 @@
 		<bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
 			<property name="order" value="1" />
 		</bean>
+	
+	<bean id="commonExceptionHandler" class="com.openid.kim.web.CommonExceptionHandler"/>
 	
 	
 </beans>

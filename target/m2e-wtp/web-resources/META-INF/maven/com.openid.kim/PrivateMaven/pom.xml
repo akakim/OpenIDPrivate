@@ -251,14 +251,27 @@
 		    <version>2.3.1</version>
 		    <scope>provided</scope>
 		</dependency>
-		
-		
-		
+	
 		<dependency>
 			<groupId>com.zaxxer</groupId>
 			<artifactId>HikariCP</artifactId>
 		    <version>3.1.0</version>
 		</dependency>
+		
+		<!-- 유효청 체크 https://mvnrepository.com/artifact/javax.validation/validation-api -->
+		<dependency>
+		    <groupId>javax.validation</groupId>
+		    <artifactId>validation-api</artifactId>
+		    <version>2.0.1.Final</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.hibernate</groupId>
+		    <artifactId>hibernate-validator</artifactId>
+		    <version>6.0.13.Final</version>
+		</dependency>
+
+		
   </dependencies>
   
    <repositories>

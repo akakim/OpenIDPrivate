@@ -11,19 +11,30 @@ import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
+import org.springframework.validation.ValidationUtils;
 
 import com.openid.kim.SessionViewProvider;
+import com.openid.kim.connect.web.BoardAPIs;
 import com.openid.kim.service.SampleBoardService;
 
 import net.spring4.chap01.Project;
 import net.spring4.chap02.UserRepository;
 
 
+/**
+ * API 규칙 /springSample/{chapter제목}/{샘플 제목}
+ * 공통 /error 
+ * @author dream
+ *
+ */
 @Controller
+@RequestMapping("/springSample")
 public class SampleController {
-
+	
 	private static final Logger logger = Logger.getLogger(SampleController.class);
 	
 	@Autowired
@@ -101,6 +112,34 @@ public class SampleController {
 		ModelAndView mv = new ModelAndView("sessionView");
 		
 		logger.info( sp.getClientID() );
+		return mv;
+	}
+	
+	@RequestMapping(value="/redirectMain")
+	public String redirect() {
+		
+		return "redirect:hello";
+		
+	}
+	
+	@RequestMapping(value="/getError")
+	public ModelAndView getErrorMessage(@RequestParam String code, @RequestParam String message) throws Exception{
+		ModelAndView mv = new ModelAndView("error");
+		
+		//logger.info(" code : " + code + "message : " + message );
+		if( code == null || "".equals(code)) {
+//			throw new Exception("code is null");
+			mv.addObject("code", "is null" );
+
+
+		}else if (message == null || "".equals(message)) {
+			mv.addObject("message","is null");
+//			throw new Exception("code is null");
+			
+		}else {
+			mv.addObject("code", code );
+			mv.addObject("message",message);
+		}
 		return mv;
 	}
 		

@@ -98,7 +98,7 @@
 
 	<bean id="sessionviewProvider" class="com.openid.kim.SessionViewProvider"/>
 	
-	<bean id="eventRepository" class="net.spring4.chap07.EventRepository" />
+<!-- 	<bean id="eventRepository" class="net.spring4.chap07.EventRepository" /> -->
 	
 
 		
@@ -115,5 +115,19 @@
 			<ref bean="userRepository"/>
 		</property> -->
 <!-- 	</bean> -->
+
+ 	<!--  chap05 PropertyEditor 추가. CustomEditorConfigurer 사용하기 -->
+ 	<!-- <bean class="org.springframeworks.beans.factory.config.CustomEditorConfigurer">
+ 			<property name="customEditors">
+ 				<map>
+	 				<entry key="net.spring4.chap05.Money" 
+	 					value = "net.spring4.chap05.MoneyEditor">
+	 				
+	 				</entry>
+ 				</map>
+ 			</property>
+ 			
+ 	</bean> -->
+ 	
 </beans>
 

@@ -57,7 +57,7 @@
 
 	<!-- 다른 클래스의 로그를 찍고 싶다면 다음 위치에 logger를 더 넣는다.  -->
 	<logger name="com.openid.kim.intercepter.LoggerIntercepter">
-		<level value="info" />
+		<level value="debug" />
 	</logger>
 	
 	
