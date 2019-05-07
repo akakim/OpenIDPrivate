@@ -80,7 +80,7 @@
 			<property name="order" value="1" />
 		</bean>
 	
-	<bean id="commonExceptionHandler" class="com.openid.kim.web.CommonExceptionHandler"/>
+<!-- 	<bean id="commonExceptionHandler" class="com.openid.kim.web.CommonExceptionHandler"/> -->
 	
 	
 </beans>

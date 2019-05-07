@@ -7,27 +7,50 @@ SET AUTOCOMMIT = 0;
 START TRANSACTION;
 
 --
--- Insert scope information into the temporary tables.
+-- Insert user information into the temporary tables. To add users to the HSQL database, edit things here.
 -- 
 
-INSERT INTO system_scope_TEMP (scope, description, icon, restricted, default_scope, structured, structured_param_description) VALUES
-  ('openid', 'log in using your identity', 'user', false, true, false, null),
-  ('profile', 'basic profile information', 'list-alt', false, true, false, null),
-  ('email', 'email address', 'envelope', false, true, false, null),
-  ('address', 'physical address', 'home', false, true, false, null),
-  ('phone', 'telephone number', 'bell', false, true, false, null),
-  ('offline_access', 'offline access', 'time', false, false, false, null),
-  ('uma_protection', 'manage protected resources', 'briefcase', false, false, false, null),
-  ('uma_authorization', 'request access to protected resources', 'share', false, false, false, null);
-  
+INSERT INTO users(username, password, enabled) VALUES
+  ('admin','password',true),
+  ('user','password',true),
+  ('sso','password',true);
+
+
+INSERT INTO authorities(username, authority) VALUES
+  ('admin','ROLE_ADMIN'),
+  ('admin','ROLE_USER'),
+  ('user','ROLE_USER'),
+  ('sso','ROLE_USER'),
+  ('sso','ROLE_ADMIN');
+    
+-- By default, the username column here has to match the username column in the users table, above
+INSERT INTO user_info(sub, preferred_username, name, email, email_verified) VALUES
+  ('90342.ASDFJWFA','admin','Demo Admin','admin@example.com', true),
+  ('01921.FLANRJQW','user','Demo User','user@example.com', true),
+  ('920209.SUB_DIR','sso','testAdmin','user@example.com', true);
+
+ 
 --
--- Merge the temporary scopes safely into the database. This is a two-step process to keep scopes from being created on every startup with a persistent store.
+-- Merge the temporary users safely into the database. This is a two-step process to keep users from being created on every startup with a persistent store.
 --
 
-INSERT INTO system_scope (scope, description, icon, restricted, default_scope, structured, structured_param_description) 
-  SELECT scope, description, icon, restricted, default_scope, structured, structured_param_description FROM system_scope_TEMP
-  ON DUPLICATE KEY UPDATE system_scope.scope = system_scope.scope;
+INSERT INTO users (username, password, enabled)
+  SELECT username, password, enabled FROM users_TEMP
+  ON DUPLICATE KEY UPDATE users.username = users.username;
 
+INSERT INTO authorities (username,authority)
+  SELECT username, authority FROM authorities_TEMP
+  ON DUPLICATE KEY UPDATE authorities.username = authorities.username;
+
+INSERT INTO user_info (sub, preferred_username, name, email, email_verified)
+  SELECT sub, preferred_username, name, email, email_verified FROM user_info_TEMP
+  ON DUPLICATE KEY UPDATE user_info.preferred_username = user_info.preferred_username;
+    
+-- 
+-- Close the transaction and turn autocommit back on
+-- 
+    
 COMMIT;
 
 SET AUTOCOMMIT = 1;
+
