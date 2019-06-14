@@ -21,6 +21,10 @@
 		<context:component-scan annotation-config="true" base-package="net.spring4.chap02"/>
 		<context:property-placeholder location="classpath:/properties/db.properties"/>
 		
+
+		<!-- transactionManger를 사용하도록만듦  reference jpa-config.xml -->
+		<tx:annotation-driven transaction-manager="defaultTransactionManager" />
+				<!-- Enables the Spring MVC @Controller programming model -->
 		<context:annotation-config/>
 		
 		<mvc:annotation-driven/>
@@ -62,6 +66,13 @@
 			
 		</mvc:annotation> -->
 		
+		
+		<!-- End Spring Security configuration -->
+
+		<!-- JPA -->
+	
+ 		<import resource="jpa-config.xml" /> 
+	
 		<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
 		up static resources in the ${webappRoot}/resources directory -->
 		<mvc:resources mapping="/resources/**" location="/resources/" />

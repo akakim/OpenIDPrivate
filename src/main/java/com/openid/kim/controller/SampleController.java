@@ -12,6 +12,7 @@ import org.springframework.context.support.GenericXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -31,8 +32,8 @@ import net.spring4.chap02.UserRepository;
  * @author dream
  *
  */
-@Controller
-@RequestMapping("/springSample")
+@RestController
+@RequestMapping("springSample")
 public class SampleController {
 	
 	private static final Logger logger = Logger.getLogger(SampleController.class);

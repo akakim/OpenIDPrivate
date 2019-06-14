@@ -220,7 +220,8 @@
 			<version>2.0.0</version> 
 		</dependency>
 		
-		<!-- <dependency> 
+		<!-- dependency for Oracle Data base  -->
+		 <dependency> 
 			<groupId>org.springframework</groupId> 
 			<artifactId>spring-jdbc</artifactId> 
 			<version>${org.springframework-version}</version> 
@@ -230,7 +231,7 @@
 			<groupId>commons-dbcp</groupId> 
 			<artifactId>commons-dbcp</artifactId> 
 			<version>1.4</version> 
-		</dependency> -->
+		</dependency> 
 
 		<dependency> 
 			<groupId>mysql</groupId> 
@@ -278,7 +279,50 @@
 		    <version>6.0.13.Final</version>
 		</dependency>
 
+
+	<!-- https://mvnrepository.com/artifact/org.eclipse.persistence/javax.persistence -->
+		<dependency>
+		    <groupId>org.eclipse.persistence</groupId>
+		    <artifactId>javax.persistence</artifactId>
+		    <version>2.2.1</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.hsqldb/hsqldb -->
+		<dependency>
+		    <groupId>org.hsqldb</groupId>
+		    <artifactId>hsqldb</artifactId>
+		    <version>2.3.4</version>
+		    <scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.persistence</groupId>
+			<artifactId>org.eclipse.persistence.jpa</artifactId>
+			<scope>test</scope>
+			   <version>2.7.4</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-orm -->
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-orm</artifactId>
+	    <version>${spring.version}</version>
+	</dependency>
 		
+		
+		<!-- <dependency>
+			<groupId>org.eclipse.persistence</groupId>
+			<artifactId>javax.persistence</artifactId>
+		</dependency>
+		 -->
+		 
+		 <!-- https://mvnrepository.com/artifact/org.eclipse.persistence/org.eclipse.persistence.oracle -->
+		 
+	<!-- Oracle JDBC  -->
+	<dependency>
+	    <groupId>org.eclipse.persistence</groupId>
+	    <artifactId>org.eclipse.persistence.oracle</artifactId>
+	    <version>2.5.0</version>
+	</dependency>
+			 
   </dependencies>
   
    <repositories>

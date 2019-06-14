@@ -98,6 +98,7 @@
 
 	<bean id="sessionviewProvider" class="com.openid.kim.SessionViewProvider"/>
 	
+	
 <!-- 	<bean id="eventRepository" class="net.spring4.chap07.EventRepository" /> -->
 	
 

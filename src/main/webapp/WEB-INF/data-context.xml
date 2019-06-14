@@ -17,120 +17,56 @@
     limitations under the License.
  -->
 <beans xmlns="http://www.springframework.org/schema/beans"
-	   xmlns:jee ="http://www.springframework.org/schema/jee"
 	   xmlns:jdbc="http://www.springframework.org/schema/jdbc"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation=
-       "http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.3.xsd
-        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
-        http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd">
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+       						http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd"
+       						profile="local">
 
-		<!-- 테스트 용으로 간단하게 만드는 것이기 때문에 
-		org.springframeworkd.jdbc.datasource.DrivermanagerDataSource
-		 는 현업에서 사용하지 않는다.   -->
-		<bean id="dataSource" 
-		   class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		   <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-		   <property name="url" value="jdbc:mysql://localhost/test?characterEncoding=UTF-8"/>
-		   <property name="username" value="root"/>
-		   <property name="password" value="Cradle!2#4"/>
+
+
+
+	<!--  
+	   SSL Enable 설정 실패 .. 
+	      로거 작업은 못함. 
+	--> 
+
+	  <!-- <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+		    <property name="poolName" value="springHikariCP" />
+		    <property name="connectionTestQuery" value="SELECT 1" />
+		    <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+		    <property name="username" value = "root"/>
+		    <property name="password" value = "magicoauth"/>
+		    <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/oauthlocaldb"/>
+		    <property name="dataSourceProperties">
+		    	<props>
+		    		<prop key="serverTimezone">UTC</prop>
+		    		<prop key="charcterEncoding">UTF-8</prop>
+		    		<prop key="sslEnable">false</prop>
+		    	</props>
+		     
+		    </property>
 		</bean>
-
-
 	
- 	<bean id="jdbcMessageDao" class="net.spring4.chap11.guest.jdbc.JdbcMessageDao">
- 		<constructor-arg ref="dataSource"/>
+	
+	
+ 	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
+ 	
+ 		 <constructor-arg ref="hikariConfig"/>
  	</bean>
-	
-	
-	<!-- Use the following to set up the OIC tables in the in-memory DB
- 		   If you are using a file based HSQLDB you should not run this every time. -->
- 		   
-<!-- 
-	
-	<jdbc:initialize-database data-source="dataSource">
-		<jdbc:script location="classpath:/db/mysql/hsql_database_tables.sql"/>
-		The following file is for the jdbc-user-service spring security implementation 
-		<jdbc:script location="classpath:/db/mysql/security-schema.sql"/>
-		The following files are for safely bootstrapping users and clients into the database 
-		<jdbc:script location="classpath:/db/mysql/loading_temp_tables.sql"/>
-		<jdbc:script location="classpath:/db/mysql/users.sql"/>
-		<jdbc:script location="classpath:/db/mysql/clients.sql"/>
-		<jdbc:script location="classpath:/db/mysql/scopes.sql"/>
-	</jdbc:initialize-database>-->
-
-	<!-- <bean id="jpaAdapter" class="org.springframework.orm.jpa.vendor.EclipseLinkJpaVendorAdapter">
- 		<property name="databasePlatform" value="org.eclipse.persistence.platform.database.HSQLPlatform" />
-		<property name="showSql" value="true" />
-	</bean> -->
- 
- 
-
-	<!--  The following is for connecting to a MySQL database that has been initialized with 
-			src/main/resources/db/mysql/mysql_database_tables.sql -->
-				
- 	<!-- <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
-		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/oauth?serverTimezone=UTC" />
-		<property name="username" value="root" />
-		<property name="password" value="1q2w3e4r5" />
- 	</bean> -->
-
-	<!-- <bean id="jpaAdapter" class="org.springframework.orm.jpa.vendor.EclipseLinkJpaVendorAdapter">
+ 	
+ 	
+ 	<bean id="jpaAdapter" class="org.springframework.orm.jpa.vendor.EclipseLinkJpaVendorAdapter">
 		<property name="databasePlatform" value="org.eclipse.persistence.platform.database.MySQLPlatform" />
 		<property name="showSql" value="true" />
-	</bean> -->
- 
- 
- 
- 
-	<!-- You can optionally initialize the database with test values here, 
-		but this is not recommended for real systems -->
-	<!-- <jdbc:initialize-database data-source="dataSource">
-		<jdbc:script location="classpath:/db/mysql/mysql_database_tables.sql"/>
-		<jdbc:script location="classpath:/db/mysql/security-schema.sql"/> -->
-		
-		<!-- 안맞음, 사용불가 START -->
-		<!-- <jdbc:script location="classpath:/db/mysql/loading_temp_tables.sql"/> -->
-		<!-- <jdbc:script location="classpath:/db/mysql/users.sql"/> -->
-		<!-- <jdbc:script location="classpath:/db/mysql/clients.sql"/>  -->
-		<!-- 안맞음, 사용불가 END -->
-		
-		<!-- <jdbc:script location="classpath:/db/mysql/scopes.sql"/>
-	</jdbc:initialize-database> -->
+	</bean>  -->
 
-	<!--  The following is for connecting to a PostgreSQL database that has been initialized with
-			src/main/resources/db/psql/psql_database_tables.sql -->
-	<!--
-	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
-		<property name="driverClassName" value="org.postgresql.Driver" />
-		<property name="jdbcUrl" value="jdbc:postgresql://localhost/oic" />
-		<property name="username" value="oic" />
-		<property name="password" value="oic" />
-	</bean>
-
-
-	<bean id="jpaAdapter" class="org.springframework.orm.jpa.vendor.EclipseLinkJpaVendorAdapter">
-		<property name="databasePlatform" value="org.eclipse.persistence.platform.database.PostgreSQLPlatform" />
-		<property name="showSql" value="true" />
-	</bean>
-	-->
 	
-	<!-- You can optionally initialize the database with test values here, 
-		but this is not recommended for real systems -->
-<!-- 	<jdbc:initialize-database data-source="dataSource"> -->
-<!-- 		<jdbc:script location="classpath:/db/psql/psql_database_tables.sql"/> -->
-<!-- 		<jdbc:script location="classpath:/db/psql/security-schema.sql"/> -->
-<!-- 		<jdbc:script location="classpath:/db/psql/loading_temp_tables.sql"/> -->
-<!-- 		<jdbc:script location="classpath:/db/psql/users.sql"/> -->
-<!-- 		<jdbc:script location="classpath:/db/psql/clients.sql"/> -->
-<!-- 		<jdbc:script location="classpath:/db/psql/scopes.sql"/> -->
-<!-- 	</jdbc:initialize-database> -->
 
 	<!--  The following is for connecting to a Oracle database that has been initialized with
 			src/main/resources/db/oracle/oracle_database_tables.sql -->
-	<!-- 
-	 <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
+	 
+	  <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
 		<property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:XE" />
 		<property name="username" value="oauth" />
@@ -138,18 +74,9 @@
 	</bean>
 
 	<bean id="jpaAdapter" class="org.springframework.orm.jpa.vendor.EclipseLinkJpaVendorAdapter">
-		<property name="databasePlatform" value="org.eclipse.persistence.platform.database.OraclePlatform" />
+		<property name="databasePlatform" value="org.eclipse.persistence.platform.database.oracle.Oracle10Platform" />
 		<property name="showSql" value="true" />
-	</bean>
- 	-->
-	<!-- Use the following to set up the OIC tables in the Oracle DB
-		   Below scripts are intended to be run once at startup. -->
-  	<!-- <jdbc:initialize-database data-source="dataSource">
- 		<jdbc:script location="classpath:/db/oracle/oracle_database_tables.sql"/>
- 		<jdbc:script location="classpath:/db/oracle/security-schema_oracle.sql"/>
- 		<jdbc:script location="classpath:/db/oracle/loading_temp_tables_oracle.sql"/>
- 		<jdbc:script location="classpath:/db/oracle/users_oracle.sql"/>
- 		<jdbc:script location="classpath:/db/oracle/clients_oracle.sql"/>
- 		<jdbc:script location="classpath:/db/oracle/scopes_oracle.sql"/>
- 	</jdbc:initialize-database> -->
+	</bean> 
+ 	
+
 </beans>
