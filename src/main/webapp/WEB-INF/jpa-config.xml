@@ -29,14 +29,14 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
 
-	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-		 <property name="entityManagerFactory" ref="entityManagerFactory" />
-		<qualifier value="defaultTransactionManager" /> 
+	<bean id="defaultTransactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		 <property name="defaultEntityManagerFactory" ref="entityManagerFactory" />
+		<qualifier value="defaultTM" /> 
 	</bean>
 
 
  	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-		<property name="packagesToScan" value="com.openid" />
+		<property name="packagesToScan" value="com.dream" />
 		<property name="persistenceProviderClass" value="org.eclipse.persistence.jpa.PersistenceProvider" />
 		<property name="dataSource" ref="dataSource" />
 		<property name="jpaVendorAdapter" ref="jpaAdapter" />
@@ -48,7 +48,7 @@
 				<entry key="eclipselink.cache.shared.default" value="false" />
 			</map>
 		</property>
-		<property name="persistenceUnitName" value="defaultPersistenceUnit" />
+		<property name="persistenceUnitName" value="defaultPersistenceDreamUnit" />
 		
 	</bean>
 </beans>

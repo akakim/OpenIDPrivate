@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
-import com.openid.kim.controller.SampleController;
+
 
 import net.spring4.chap01.BuildRunner;
 

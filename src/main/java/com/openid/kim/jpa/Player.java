@@ -1,4 +1,4 @@
-package com.dream.jpa;
+package com.openid.kim.jpa;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -18,8 +18,8 @@ import javax.persistence.Table;
 				query = "SELECT p FROM Player p"
 			),
 	@NamedQuery(
-			name = Player.QUERY_ALL,
-			query = "SELECT p FROM Player p"
+			name = Player.QEURY_ORERED_NAME,
+			query = "SELECT p FROM Player p ORDER BY p.name"
 		)
 	
 })
@@ -66,6 +66,12 @@ public class Player implements Serializable{
 	}
 	public void setPlayerRegistration(Date playerRegistration) {
 		this.playerRegistration = playerRegistration;
+	}
+	
+	@Override
+	public String toString() {
+		return "Player [id=" + id + ", playerName=" + playerName + ", playerScore=" + playerScore
+				+ ", playerRegistration=" + playerRegistration + "]";
 	}
 	
 	

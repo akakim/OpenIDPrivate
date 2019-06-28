@@ -5,4 +5,4 @@
  * @author dream
  *
  */
-package com.dream.jpa;
+package com.kim.util;
